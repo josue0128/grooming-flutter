@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/Home.dart';
 
 
 
@@ -131,6 +132,11 @@ class _AppointmentFormState extends State<AppointmentForm> {
             if(_activeStepIndex <(stepList().length-1)){
               _activeStepIndex += 1;
             }
+
+            if(_activeStepIndex == 3){
+
+              _dialogBuilder(context);
+            }
             setState((){
 
             });
@@ -145,6 +151,52 @@ class _AppointmentFormState extends State<AppointmentForm> {
             });
           },
         )
+    );
+  }
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Are you sure??'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('name: ' + name.text),
+              Text('email: ' +email.text),
+              Text('phone number: ' +phone.text),
+              Text('address: ' +address.text),
+              Text('pet name: ' +pet_name.text),
+              Text('pet type: ' +pet_type.text),
+              Text('weight: ' +weight.text),
+              Text("Are you sure above information are correct?")
+
+
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

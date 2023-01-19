@@ -53,7 +53,7 @@ class contact extends StatelessWidget {
                     SizedBox(
                       width: 30,
                     ),
-                    Text("1 + 4792256267",style: TextStyle(
+                    Text("1 + 0000000000",style: TextStyle(
                         fontSize: 20
                     ))
                   ],
